@@ -22,7 +22,9 @@ namespace SEG_Example_Console
 
             //araba bir saat sonra 20 birim daha hızlanacaktır
             //arabanın bir saat sonraki değerlerini ilgili değişkenlere
-            //atayarak hesaplayın
+            //atayarak hesaplayın. Yukarida olusturulan degiskenlerden gerekli olanlarin
+            //degerlerini guncellemelisiniz.
+            //ornek: gidilecekMesafe = yapacaginiz hesaplama islemi
             
 
             //1 saat sonrası için hesapladığınız yeni bilgileri terminale yazdıralım
