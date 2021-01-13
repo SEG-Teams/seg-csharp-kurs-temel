@@ -14,22 +14,6 @@ namespace SEG_Example_Console
             //ve istenilen kritere uygun girdi girildiginde konsola bir mesaj yazarak uygulamayi sonlandirin.
 
             int tekSayi = 1;
-            bool tamSayiIstenilenKritereUygun = false;
-            if (!tamSayiIstenilenKritereUygun)
-            {
-                Console.WriteLine("Lutfen sifirdan buyuk ve tek bir tam sayi giriniz.");
-                string tamSayiGirdisi = Console.ReadLine();
-                int tamSayi = 0;
-
-                int.TryParse(tamSayiGirdisi, out tamSayi);
-                if(tamSayi > 0 && tamSayi % 2 == 1)
-                {
-                    tekSayi = tamSayi;
-                    tamSayiIstenilenKritereUygun = true;
-                }
-            }
-
-            Console.WriteLine("Girmis oldugunuz tek sayi: {0}", tekSayi);
         }
     }
 }
