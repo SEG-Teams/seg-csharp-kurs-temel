@@ -6,7 +6,7 @@ namespace SEG_Example_Console
     {
         static void Main(string[] args)
         {
-            //CS7 Diziler (Array)
+            //CS8 Diziler (Array)
             string[] otomobilMarkalariBir = { "Volvo", "Mazda", "BMW", "Mazda", "Ford" };
 
             string[] otomobilMarkalariIki;
