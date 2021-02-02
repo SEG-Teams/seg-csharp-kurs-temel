@@ -8,86 +8,82 @@ namespace SEG_Example_Console
     {
         static void Main(string[] args)
         {
-            //CS11 Metotlar
-            var benimArabam = new Araba("35 TEST 43", 50, 4, 1);
-            var komsununArabasi = new Araba("35 TEST2 20", 60, 4, 2);
+            //CS10 Sinif odakli yazilim
+            List<int> ogrenciNumaralari = new List<int>(){111,112,113,114,115,116,117,118,119};
+            List<string> ogrenciIsimleri = new List<string>(){"TT", "BT", "CT", "ZT", "ST"};
 
-            int yarisBitisMesafesi = 140;
-            while(benimArabam.BulunduguMesafe < yarisBitisMesafesi &&
-            komsununArabasi.BulunduguMesafe < yarisBitisMesafesi){
-                benimArabam.Ilerlet();
-                komsununArabasi.Ilerlet();
+            for (int i = 0; i < ogrenciIsimleri.Count; i++)
+            {
+                Console.WriteLine("{0} numarali ogrenci {1}", ogrenciNumaralari[i], ogrenciIsimleri[i]);
             }
 
-            Araba kazananAraba = null;
-            if(benimArabam.BulunduguMesafe > komsununArabasi.BulunduguMesafe){
-                kazananAraba = benimArabam;
-            }
-            else if(komsununArabasi.BulunduguMesafe > benimArabam.BulunduguMesafe){
-                kazananAraba = komsununArabasi;
-            }
-
-            if(kazananAraba != null){
-                Console.WriteLine("Kazanan araba {0} plakali arac.",kazananAraba.Plaka);
-            }
-            else{
-                Console.WriteLine("Kazanan arac yok. Yaris berabere ya da araclar bitis cizgisine ulasamadi.");
+            Console.WriteLine();
+            ogrenciNumaralari = ogrenciNumaralari.OrderByDescending(x=>x).ToList();
+            for (int i = 0; i < ogrenciIsimleri.Count; i++)
+            {
+                Console.WriteLine("{0} numarali ogrenci {1}", ogrenciNumaralari[i], ogrenciIsimleri[i]);
             }
 
-            benimArabam.YakitEkle(4);
-            komsununArabasi.YakitEkle(4);
+            List<Ogrenci> okulunOgrencileri = new List<Ogrenci>();
+
+            Ogrenci ogrenci1 = new Ogrenci();
+            ogrenci1.Isim = "TT";
+            ogrenci1.OkulNumarasi = 11;
+            ogrenci1.KayitTarihi = DateTime.Now;
+            okulunOgrencileri.Add(ogrenci1);
+
+            Ogrenci ogrenci2 = new Ogrenci(){Isim = "BT", OkulNumarasi = 112,
+                KayitTarihi = new DateTime(2020, 12, 1)};
+            okulunOgrencileri.Add(ogrenci2);
+
+            Ogrenci ogrenci3 = new Ogrenci(){Isim = "CT", OkulNumarasi = 113,
+                KayitTarihi = new DateTime(2020, 1, 1)};
+            okulunOgrencileri.Add(ogrenci3);
+
+            Ogrenci ogrenci4 = new Ogrenci(){Isim = "ZT", OkulNumarasi = 114,
+                KayitTarihi = new DateTime(2020, 1, 5)};
+            okulunOgrencileri.Add(ogrenci4);
+
+            Ogrenci ogrenci5 = new Ogrenci(){Isim = "ST", OkulNumarasi = 115,
+                KayitTarihi = new DateTime(2020, 1, 15)};
+            okulunOgrencileri.Add(ogrenci5);
+
+            Console.WriteLine("\nOkulun ogrencileri:");
+            for (int i = 0; i < okulunOgrencileri.Count; i++)
+            {
+                Console.WriteLine("{0} numarali ogrenci {1}, {2} tarihinde kaydoldu"
+                    ,okulunOgrencileri[i].OkulNumarasi, okulunOgrencileri[i].Isim,
+                    okulunOgrencileri[i].KayitTarihi);
+            }
+
+            okulunOgrencileri = okulunOgrencileri.OrderByDescending(x=>x.OkulNumarasi).ToList();
+            Console.WriteLine("\nOkulun ogrencilerinin numaraya gore ters siralanmis hali:");
+            for (int i = 0; i < okulunOgrencileri.Count; i++)
+            {
+                Console.WriteLine("{0} numarali ogrenci {1}, {2} tarihinde kaydoldu"
+                    ,okulunOgrencileri[i].OkulNumarasi, okulunOgrencileri[i].Isim,
+                    okulunOgrencileri[i].KayitTarihi);
+            }
+
+            okulunOgrencileri = okulunOgrencileri.OrderByDescending(x=>x.KayitTarihi).ToList();
+            Console.WriteLine("\nOkulun ogrencilerinin kayit tarihine gore ters siralanmis hali:");
+            for (int i = 0; i < okulunOgrencileri.Count; i++)
+            {
+                Console.WriteLine("{0} numarali ogrenci {1}, {2} tarihinde kaydoldu"
+                    ,okulunOgrencileri[i].OkulNumarasi, okulunOgrencileri[i].Isim,
+                    okulunOgrencileri[i].KayitTarihi);
+            }
+            
         }
     }
 
-    class Araba{
-        public string Plaka;
-        public int BulunduguMesafe;
-        public int Hiz;
-        public int YakitTankiKapasitesi;
-        public int MevcutYakitMiktari;
-        public int YakitTuketimi;
+    public class Ogrenci
+    {
+        public string Isim;
 
-        public Araba(string plaka, int hiz, int yakitTankiKapasitesi, int yakitTuketimi)
-        {
-            Plaka = plaka;
-            Hiz = hiz;
-            YakitTankiKapasitesi = yakitTankiKapasitesi;
-            MevcutYakitMiktari = YakitTankiKapasitesi;
-            YakitTuketimi = yakitTuketimi;
-        }
+        public int OkulNumarasi;
 
-        public void Ilerlet(){
-            if(YeterliYakitVarMi()){
-                BulunduguMesafe += Hiz;
-                Console.WriteLine("{0} plakali arac {1} birim ilerleyerek {2}. mesafeye geldi."
-                ,Plaka, Hiz, BulunduguMesafe);
-
-                YakitTuket();
-            }
-            else{
-                Console.WriteLine("Arabada yeterli yakit yok.");
-            }
-        }
-
-        public bool YeterliYakitVarMi(){
-            return MevcutYakitMiktari >= YakitTuketimi;
-        }
-
-        public void YakitTuket(){
-            if(!YeterliYakitVarMi())
-                return;
-            
-            MevcutYakitMiktari -= YakitTuketimi;
-        }
-
-        public void YakitEkle(int eklenecekMiktar){
-            MevcutYakitMiktari += eklenecekMiktar;
-            if(MevcutYakitMiktari > YakitTankiKapasitesi){
-                MevcutYakitMiktari = YakitTankiKapasitesi;
-            }
-            Console.WriteLine("{0} plakali araca yakit eklendi. Mevcut yakit miktari: {1} litre.",
-                Plaka, MevcutYakitMiktari);
-        }
+        public DateTime KayitTarihi;
 
     }
 }
